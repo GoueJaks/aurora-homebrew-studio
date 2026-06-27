@@ -1,0 +1,13 @@
+# ==========================
+# Aurora Homebrew Studio
+# Python Dependencies
+# ==========================
+
+# GUI
+customtkinter>=5.2.2
+
+# Images & Icons
+Pillow>=11.0.0
+
+# XML Processing
+lxml>=6.0.0
