@@ -32,34 +32,24 @@ class MainWindow(ctk.CTk):
         self.page_container = ctk.CTkFrame(self, corner_radius=0)
         self.page_container.grid(row=0, column=1, sticky="nsew")
 
-        self.home = HomePage(self.page_container)
-        self.home.pack(fill="both", expand=True)
+        self.pages = {
+            "Home": HomePage(self.page_container),
+            "Items": ItemsPage(self.page_container),
+            "Magic Items": MagicItemsPage(self.page_container),
+            "Spells": SpellsPage(self.page_container),
+            "Feats": FeatsPage(self.page_container),
+            "Backgrounds": BackgroundsPage(self.page_container),
+            "Monsters": MonstersPage(self.page_container),
+            "Settings": SettingsPage(self.page_container),
+        }
 
-self.pages = {
+        self.show_page("Home")
 
-    "Home": HomePage(self.page_container),
-    "Items": ItemsPage(self.page_container),
-    "Magic Items": MagicItemsPage(self.page_container),
-    "Spells": SpellsPage(self.page_container),
-    "Feats": FeatsPage(self.page_container),
-    "Backgrounds": BackgroundsPage(self.page_container),
-    "Monsters": MonstersPage(self.page_container),
-    "Settings": SettingsPage(self.page_container)
+    def show_page(self, page_name):
 
+        # Hide all pages
+        for page in self.pages.values():
+            page.pack_forget()
 
-}
-
-def show_page(self, page_name):
-
-    # Hide every page
-    for page in self.pages.values():
-        page.pack_forget()
-
-    # Show the selected page
-    self.pages[page_name].pack(
-        fill="both",
-        expand=True
-
-    )
-
-self.show_page("Home")
+        # Show selected page
+        self.pages[page_name].pack(fill="both", expand=True)
